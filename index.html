@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -201,6 +201,7 @@
         0 32px 64px rgba(0,0,0,0.25),
         inset -2px -2px 8px rgba(0,0,0,0.1);
     }
+
     /* SECTIONS */
     section {
       position: relative;
@@ -285,6 +286,136 @@
       border: 1px solid rgba(30,60,114,0.18);
       font-weight: 500;
     }
+
+    /* ===================== SKILLS SECTION ===================== */
+    .skills-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .skills-column-title {
+      font-family: "DM Mono", monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .skills-column-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: rgba(30,60,114,0.15);
+    }
+
+    /* Technical skill cards */
+    .tech-skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tech-skill-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      box-shadow: 0 1px 8px rgba(30,60,114,0.05);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .tech-skill-item::before {
+      content: "";
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--navy-grad);
+      border-radius: 3px 0 0 3px;
+    }
+    .tech-skill-item:hover {
+      transform: translateX(4px);
+      box-shadow: 0 6px 20px rgba(30,60,114,0.11);
+      border-color: rgba(42,82,152,0.35);
+    }
+    .skill-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(30,60,114,0.08);
+      border: 1px solid rgba(30,60,114,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .skill-text {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    .skill-text small {
+      display: block;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* Power / Soft skills */
+    .soft-skill-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .soft-skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 18px;
+      text-align: center;
+      box-shadow: 0 1px 8px rgba(30,60,114,0.05);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .soft-skill-card::after {
+      content: "";
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--purple-grad);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    .soft-skill-card:hover::after { transform: scaleX(1); }
+    .soft-skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(30,60,114,0.12);
+      border-color: rgba(102,126,234,0.35);
+    }
+    .soft-skill-emoji {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .soft-skill-name {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: var(--accent);
+    }
+
+    @media (max-width: 900px) {
+      .skills-wrapper { grid-template-columns: 1fr; }
+      .soft-skill-grid { grid-template-columns: 1fr 1fr; }
+    }
+    /* ===================== END SKILLS ===================== */
 
     /* PROJECTS */
     .projects-grid {
@@ -625,6 +756,7 @@
   <div class="nav-logo">Portfolio</div>
   <ul class="nav-links">
     <li><a href="#education">EDUCATION</a></li>
+    <li><a href="#skills">SKILLS</a></li>
     <li><a href="#projects">PROJECTS</a></li>
     <li><a href="#experience">EXPERIENCE</a></li>
     <li><a href="#credentials">CERTS</a></li>
@@ -711,8 +843,84 @@
 
 <div class="divider"></div>
 
+<!-- SKILLS -->
+<section id="skills" class="section-alt">
+  <div class="section-label">CAPABILITIES</div>
+  <h2 class="section-title">Skills &amp; <span>Competencies</span></h2>
+  <div class="skills-wrapper">
+
+    <!-- Technical Skills -->
+    <div>
+      <div class="skills-column-title">Technical Skills</div>
+      <div class="tech-skill-list">
+        <div class="tech-skill-item">
+          <div class="skill-icon">🧬</div>
+          <div class="skill-text">
+            Cell Designing
+            <small>Cell engineering principles and design methodologies</small>
+          </div>
+        </div>
+        <div class="tech-skill-item">
+          <div class="skill-icon">🔬</div>
+          <div class="skill-text">
+            Recombinant DNA Technology
+            <small>Theory and hands-on application of rDNA techniques</small>
+          </div>
+        </div>
+        <div class="tech-skill-item">
+          <div class="skill-icon">⚗️</div>
+          <div class="skill-text">
+            Lab Instrumentation
+            <small>Performing rDNA experiments using specialised lab equipment</small>
+          </div>
+        </div>
+        <div class="tech-skill-item">
+          <div class="skill-icon">💻</div>
+          <div class="skill-text">
+            Bioinformatics & Data Science
+            <small>Sequence analysis, BLAST, NCBI databases, Python/Biopython</small>
+          </div>
+        </div>
+        <div class="tech-skill-item">
+          <div class="skill-icon">💊</div>
+          <div class="skill-text">
+            In Silico Drug Discovery <span style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent3);padding:1px 7px;border-radius:100px;background:rgba(102,126,234,0.12);border:1px solid rgba(102,126,234,0.25);margin-left:6px;">Learning</span>
+            <small>Computational approaches to drug target identification &amp; docking</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power / Soft Skills -->
+    <div>
+      <div class="skills-column-title">Power Skills</div>
+      <div class="soft-skill-grid">
+        <div class="soft-skill-card">
+          <span class="soft-skill-emoji">🤝</span>
+          <div class="soft-skill-name">Team Work</div>
+        </div>
+        <div class="soft-skill-card">
+          <span class="soft-skill-emoji">🔍</span>
+          <div class="soft-skill-name">Curiosity</div>
+        </div>
+        <div class="soft-skill-card">
+          <span class="soft-skill-emoji">⚡</span>
+          <div class="soft-skill-name">Quick Learner</div>
+        </div>
+        <div class="soft-skill-card">
+          <span class="soft-skill-emoji">🌱</span>
+          <div class="soft-skill-name">Adaptability</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- PROJECTS -->
-<section id="projects" class="section-alt">
+<section id="projects">
   <h2 class="section-title">My  <span> Projects</span></h2>
   <div class="projects-grid">
     <div class="project-card">
@@ -751,7 +959,7 @@
 <div class="divider"></div>
 
 <!-- EXPERIENCE -->
-<section id="experience">
+<section id="experience" class="section-alt">
   <h2 class="section-title">Industry <span>Exposure</span></h2>
   <div class="internship-card">
     <div class="internship-body">
@@ -770,14 +978,13 @@
 <div class="divider"></div>
 
 <!-- CREDENTIALS & TRAINING -->
-<section id="credentials" class="section-alt">
+<section id="credentials">
   <div class="section-label">CERTIFIED</div>
   <div class="section-title">Credentials & Training <span>Certificates</span></div>
   
   <div class="cert-grid">
 
     <div class="cert-card">
-    
       <div class="cert-info">
         <h3>Introduction to Good Manufacturing Practices (GMP)</h3>
         <p class="issuer">Zamann Pharma Support GmbH • TÜV SÜD Certified</p>
@@ -789,7 +996,6 @@
     </div>
 
     <div class="cert-card">
-    
       <div class="cert-info">
         <h3>Vaccine Technology – 2 Day Offline Workshop</h3>
         <p class="issuer">Ethical Edufabrica Pvt. Ltd. × Advitiya, IIT Ropar</p>
@@ -801,7 +1007,6 @@
     </div>
 
     <div class="cert-card">
-
       <div class="cert-info">
         <h3>Public Speaking – Certificate of Merit</h3>
         <p class="issuer">Centre for Professional Enhancement, Lovely Professional University</p>
@@ -813,7 +1018,6 @@
     </div>
 
     <div class="cert-card">
-   
       <div class="cert-info">
         <h3>TCS iON Career Edge – Young Professional</h3>
         <p class="issuer">Tata Consultancy Services</p>
@@ -825,7 +1029,6 @@
     </div>
 
     <div class="cert-card">
-
       <div class="cert-info">
         <h3>Certificate Course in Tally</h3>
         <p class="issuer">Gurudatta Computer Education, Nale gaon</p>
@@ -842,7 +1045,7 @@
 <div class="divider"></div>
 
 <!-- ACTIVITIES -->
-<section id="activities">
+<section id="activities" class="section-alt">
   <h2 class="section-title">Beyond the <span>Curriculum</span></h2>
   <div class="activities-timeline">
     <div class="activity-item">
@@ -881,7 +1084,7 @@
 <div class="divider"></div>
 
 <!-- CONTACT -->
-<section id="contact" class="section-alt">
+<section id="contact">
   <h2 class="section-title">Let's <span>Connect</span></h2>
   <div class="contact-grid">
     <div class="contact-links">
@@ -920,7 +1123,6 @@
 </footer>
 
 <script>
-// Certificate images – variable names now match the onclick calls
 window.gmp    = "gmp.jpeg";
 window.vt     = "vt.jpeg";
 window.ps     = "ps.png";
