@@ -1,1193 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pranav Shirure | Biotechnology & Bioinformatics</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f4f6fb;
-      --bg2: #eaf0fa;
-      --card: #ffffff;
-      --border: rgba(30,60,114,0.12);
-      --accent: #1e3c72;
-      --accent2: #2a5298;
-      --accent3: #667eea;
-      --text: #1a2340;
-      --muted: #5a6a8a;
-      --gold: #e2c62b;
-      --navy-grad: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-      --purple-grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "DM Sans", sans-serif;
-      font-weight: 400;
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-    
-    .cert-btn {
-      padding: 10px 24px;
-      background: var(--accent);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .cert-btn:hover {
-      background: var(--accent2);
-      transform: translateY(-1px);
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 16px 48px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255,255,255,0.92);
-      -webkit-backdrop-filter: blur(14px);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border);
-      box-shadow: 0 2px 16px rgba(30,60,114,0.07);
-    }
-    .nav-logo {
-      font-family: "Syne", sans-serif;
-      font-weight: 800;
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-    }
-    .nav-logo span { color: var(--accent3); }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-family: "DM Mono", monospace;
-      font-size: 0.76rem;
-      color: var(--muted);
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* HERO */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 120px 80px 80px;
-      background: var(--navy-grad);
-      overflow: hidden;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctances='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-    .hero-glow {
-      position: absolute;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(102,126,234,0.25) 0%, transparent 70%);
-      top: -80px; right: 60px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 700px;
-      color: #fff;
-    }
-    .hero-tag {
-      display: inline-block;
-      font-family: "DM Mono", monospace;
-      font-size: 0.74rem;
-      letter-spacing: 0.14em;
-      color: var(--gold);
-      border: 1px solid rgba(255,215,0,0.4);
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 28px;
-      animation: fadeUp 0.8s ease both;
-    }
-    .hero h1 {
-      font-family: "Syne", sans-serif;
-      font-size: clamp(2.8rem, 6vw, 4.8rem);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 22px;
-      text-shadow: 0 2px 12px rgba(0,0,0,0.25);
-      animation: fadeUp 0.8s 0.1s ease both;
-    }
-    .hero h1 .line2 { color: var(--gold); display: block; }
-    .hero-desc {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.82);
-      max-width: 500px;
-      margin-bottom: 36px;
-      animation: fadeUp 0.8s 0.2s ease both;
-    }
-    .hero-meta {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-    .meta-pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.84rem;
-      color: rgba(255,255,255,0.75);
-    }
-    .meta-pill .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      flex-shrink: 0;
-    }
-
-    /* HERO CONTACT STRIP */
-    .hero-contact-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 28px;
-      margin-top: 22px;
-      animation: fadeUp 0.8s 0.5s ease both;
-    }
-    .hero-contact-item {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.65);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .hero-contact-item:hover { color: var(--gold); }
-    .hci-icon { font-size: 0.9rem; display: flex; align-items: center; }
-
-    /* HERO PHOTO */
-    .hero-photo {
-      position: absolute;
-      right: 300px;
-      top: 30%;
-      transform: translateY(-50%);
-      z-index: 1;
-      animation: fadeUp 1s 0.2s ease both;
-    }
-    .hero-photo img {
-      width: 270px; height: 420px;
-      border-radius: 12px;
-      object-fit: cover;
-      border: none;
-      box-shadow: 
-        0 8px 16px rgba(0,0,0,0.15),
-        0 16px 32px rgba(0,0,0,0.2),
-        0 32px 64px rgba(0,0,0,0.25),
-        inset -2px -2px 8px rgba(0,0,0,0.1);
-    }
-
-    /* SECTIONS */
-    section {
-      position: relative;
-      z-index: 1;
-      padding: 90px 80px;
-    }
-    .section-label {
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 14px;
-    }
-    .section-title {
-      font-family: "Syne", sans-serif;
-      font-size: clamp(1.9rem, 3.2vw, 2.7rem);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      margin-bottom: 55px;
-      color: var(--accent);
-    }
-    .section-title span { color: var(--accent3); }
-
-    /* DIVIDER */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(30,60,114,0.15) 20%, rgba(30,60,114,0.15) 80%, transparent);
-      margin: 0 80px;
-    }
-
-    /* ALT BG SECTION */
-    .section-alt { background: var(--bg2); }
-
-    /* EDUCATION */
-    .edu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 24px;
-    }
-    .edu-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 30px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 2px 12px rgba(30,60,114,0.06);
-    }
-    .edu-card::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--navy-grad);
-    }
-    .edu-card:hover {
-      border-color: rgba(42,82,152,0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(30,60,114,0.12);
-    }
-    .edu-degree {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 6px;
-      color: var(--accent);
-    }
-    .edu-institution { color: var(--accent2); font-size: 0.88rem; margin-bottom: 4px; font-weight: 500; }
-    .edu-year { font-family: "DM Mono", monospace; font-size: 0.74rem; color: var(--muted); }
-    .edu-score {
-      margin-top: 12px;
-      display: inline-block;
-      background: rgba(30,60,114,0.07);
-      color: var(--accent);
-      font-family: "DM Mono", monospace;
-      font-size: 0.8rem;
-      padding: 4px 12px;
-      border-radius: 100px;
-      border: 1px solid rgba(30,60,114,0.18);
-      font-weight: 500;
-    }
-
-    /* ===================== SKILLS SECTION ===================== */
-    .skills-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-    .skills-column-title {
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 22px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .skills-column-title::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: rgba(30,60,114,0.15);
-    }
-
-    /* Technical skill cards */
-    .tech-skill-list {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .tech-skill-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px 18px;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      box-shadow: 0 1px 8px rgba(30,60,114,0.05);
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .tech-skill-item::before {
-      content: "";
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: var(--navy-grad);
-      border-radius: 3px 0 0 3px;
-    }
-    .tech-skill-item:hover {
-      transform: translateX(4px);
-      box-shadow: 0 6px 20px rgba(30,60,114,0.11);
-      border-color: rgba(42,82,152,0.35);
-    }
-    .skill-icon {
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      background: rgba(30,60,114,0.08);
-      border: 1px solid rgba(30,60,114,0.15);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-    }
-    .skill-text {
-      font-size: 0.88rem;
-      color: var(--text);
-      font-weight: 500;
-      line-height: 1.5;
-    }
-    .skill-text small {
-      display: block;
-      font-size: 0.76rem;
-      color: var(--muted);
-      font-weight: 400;
-      margin-top: 2px;
-    }
-
-    /* Power / Soft skills */
-    .soft-skill-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    .soft-skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 18px;
-      text-align: center;
-      box-shadow: 0 1px 8px rgba(30,60,114,0.05);
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-      position: relative;
-      overflow: hidden;
-    }
-    .soft-skill-card::after {
-      content: "";
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--purple-grad);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      transform-origin: left;
-    }
-    .soft-skill-card:hover::after { transform: scaleX(1); }
-    .soft-skill-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 26px rgba(30,60,114,0.12);
-      border-color: rgba(102,126,234,0.35);
-    }
-    .soft-skill-emoji {
-      font-size: 1.6rem;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .soft-skill-name {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--accent);
-    }
-    .skill-learning-badge {
-      font-family: "DM Mono", monospace;
-      font-size: 0.68rem;
-      color: var(--accent3);
-      padding: 1px 7px;
-      border-radius: 100px;
-      background: rgba(102, 126, 234, 0.12);
-      border: 1px solid rgba(102, 126, 234, 0.25);
-      margin-left: 6px;
-    }
-
-    @media (max-width: 900px) {
-      .skills-wrapper { grid-template-columns: 1fr; }
-      .soft-skill-grid { grid-template-columns: 1fr 1fr; }
-    }
-    /* ===================== END SKILLS ===================== */
-
-    /* PROJECTS */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
-    }
-    .project-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 32px;
-      transition: all 0.3s;
-      box-shadow: 0 2px 12px rgba(30,60,114,0.06);
-    }
-    .project-card:hover {
-      border-color: rgba(42,82,152,0.4);
-      transform: translateY(-5px);
-      box-shadow: 0 16px 40px rgba(30,60,114,0.13);
-    }
-    .project-num {
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
-      color: var(--accent3);
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-    .project-title {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 1.12rem;
-      margin-bottom: 10px;
-      color: var(--accent);
-      line-height: 1.3;
-    }
-    .project-date { font-family: "DM Mono", monospace; font-size: 0.72rem; color: var(--muted); margin-bottom: 14px; }
-    .project-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 20px; }
-    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-    .tech-tag {
-      font-family: "DM Mono", monospace;
-      font-size: 0.7rem;
-      padding: 3px 10px;
-      border-radius: 100px;
-      background: rgba(30,60,114,0.07);
-      border: 1px solid rgba(30,60,114,0.18);
-      color: var(--accent2);
-    }
-    .github-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      border: 1px dashed rgba(30,60,114,0.3);
-      padding: 8px 16px;
-      border-radius: 8px;
-      transition: all 0.25s;
-    }
-    .github-link:hover { border-color: var(--accent2); color: var(--accent2); }
-    .github-link svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-    /* INTERNSHIP */
-    .internship-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 5px solid var(--accent2);
-      border-radius: 14px;
-      padding: 36px 40px;
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-      box-shadow: 0 2px 12px rgba(30,60,114,0.06);
-      transition: box-shadow 0.3s;
-    }
-    .internship-card:hover { box-shadow: 0 10px 30px rgba(30,60,114,0.12); }
-    .internship-icon {
-      width: 52px; height: 52px;
-      border-radius: 12px;
-      background: rgba(30,60,114,0.08);
-      border: 1px solid rgba(30,60,114,0.18);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; font-size: 1.4rem;
-    }
-    .internship-body h4 {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 1.05rem;
-      margin-bottom: 4px;
-      color: var(--accent);
-    }
-    .internship-org { color: var(--accent2); font-size: 0.86rem; margin-bottom: 4px; font-weight: 500; }
-    .internship-date { font-family: "DM Mono", monospace; font-size: 0.72rem; color: var(--muted); margin-bottom: 14px; }
-    .internship-points { list-style: none; padding: 0; }
-    .internship-points li {
-      color: var(--muted);
-      font-size: 0.9rem;
-      padding-left: 18px;
-      position: relative;
-      margin-bottom: 6px;
-    }
-    .internship-points li::before {
-      content: "→";
-      position: absolute; left: 0;
-      color: var(--accent2); font-size: 0.8rem;
-    }
-
-    /* CERTIFICATIONS / CREDENTIALS */
-    .cert-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 28px;
-      margin-top: 2rem;
-    }
-    .cert-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(30,60,114,0.06);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .cert-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(30,60,114,0.15);
-    }
-    .cert-img {
-      height: 220px;
-      overflow: hidden;
-      background: #f8f9fd;
-    }
-    .cert-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s;
-    }
-    .cert-card:hover .cert-img img {
-      transform: scale(1.05);
-    }
-    .cert-info {
-      padding: 24px;
-    }
-    .cert-info h3 {
-      font-family: "Syne", sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: var(--accent);
-      line-height: 1.2;
-    }
-    .cert-info .issuer {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 4px;
-    }
-    .cert-info .date {
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-bottom: 20px;
-    }
-    /* LIGHTBOX */
-    .lightbox-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(10,20,50,0.88);
-      z-index: 999;
-      justify-content: center;
-      align-items: center;
-      padding: 24px;
-      -webkit-backdrop-filter: blur(6px);
-      backdrop-filter: blur(6px);
-    }
-    .lightbox-overlay.active { display: flex; }
-    .lightbox-box {
-      position: relative;
-      max-width: 860px;
-      width: 100%;
-      background: #fff;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-      animation: lbIn 0.28s ease both;
-    }
-    @keyframes lbIn {
-      from { opacity: 0; transform: scale(0.94); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .lightbox-header {
-      background: var(--navy-grad);
-      color: #fff;
-      padding: 16px 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .lightbox-header h3 { font-family: "Syne", sans-serif; font-size: 1rem; font-weight: 700; }
-    .lightbox-close {
-      background: rgba(255,255,255,0.15);
-      border: none;
-      color: #fff;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.1rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.2s;
-    }
-    .lightbox-close:hover { background: rgba(255,255,255,0.3); }
-    .lightbox-img {
-      width: 100%;
-      max-height: 70vh;
-      object-fit: contain;
-      display: block;
-      padding: 16px;
-      background: #f8faff;
-    }
-
-    /* ACTIVITIES */
-    .activities-timeline { position: relative; padding-left: 28px; }
-    .activities-timeline::before {
-      content: "";
-      position: absolute;
-      left: 0; top: 6px; bottom: 6px;
-      width: 2px;
-      background: linear-gradient(180deg, var(--accent), var(--accent3), transparent);
-      border-radius: 2px;
-    }
-    .activity-item { position: relative; margin-bottom: 28px; padding-left: 20px; }
-    .activity-item::before {
-      content: "";
-      position: absolute;
-      left: -28px; top: 8px;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--accent2);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--accent2);
-    }
-    .activity-date { font-family: "DM Mono", monospace; font-size: 0.72rem; color: var(--accent3); letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 600; }
-    .activity-text { font-size: 0.93rem; color: var(--text); font-weight: 500; }
-    .activity-sub { font-size: 0.82rem; color: var(--muted); }
-
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-    .contact-links { display: flex; flex-direction: column; gap: 14px; }
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 18px 22px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.25s;
-      box-shadow: 0 2px 8px rgba(30,60,114,0.05);
-    }
-    .contact-link:hover {
-      border-color: var(--accent2);
-      transform: translateX(6px);
-      box-shadow: 0 6px 20px rgba(30,60,114,0.12);
-    }
-    .contact-link-icon {
-      width: 40px; height: 40px;
-      border-radius: 8px;
-      background: rgba(30,60,114,0.08);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-    }
-    .contact-link-info small {
-      display: block;
-      font-family: "DM Mono", monospace;
-      font-size: 0.67rem;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      margin-bottom: 2px;
-    }
-    .contact-link-info strong { font-size: 0.9rem; font-weight: 600; color: var(--accent); }
-    .contact-right p { color: var(--muted); font-size: 0.95rem; margin-bottom: 18px; line-height: 1.8; }
-    .contact-location {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent2);
-      border-radius: 10px;
-      padding: 18px 22px;
-      margin-top: 18px;
-      box-shadow: 0 2px 8px rgba(30,60,114,0.05);
-    }
-    .contact-location small {
-      font-family: "DM Mono", monospace;
-      font-size: 0.67rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      display: block;
-      margin-bottom: 4px;
-    }
-    .contact-location span { font-weight: 600; font-size: 0.92rem; color: var(--accent); }
-
-    /* FOOTER */
-    footer {
-      text-align: center;
-      padding: 28px 80px;
-      font-family: "DM Mono", monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      background: var(--card);
-      letter-spacing: 0.06em;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      nav { padding: 16px 24px; }
-      .nav-links { display: none; }
-      .hero { padding: 120px 28px 80px; flex-direction: column; }
-      .hero-photo { position: relative; right: auto; top: auto; transform: none; margin-bottom: 40px; order: -1; }
-      section { padding: 60px 24px; }
-      .divider { margin: 0 24px; }
-      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
-      .internship-card { flex-direction: column; gap: 20px; padding: 24px; }
-      footer { padding: 24px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pranav Shirure | Biotechnology & Bioinformatics</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--line:rgba(30,60,114,.15);--btn:#1e3c72;--navbg:rgba(255,255,255,.92);--bg:#f4f6fb;--bg2:#eaf0fa;--card:#fff;--border:rgba(30,60,114,.12);--accent:#1e3c72;--accent2:#2a5298;--accent3:#667eea;--text:#1a2340;--muted:#5a6a8a;--gold:#e2c62b;--navy-grad:linear-gradient(135deg,#1e3c72,#2a5298);--purple-grad:linear-gradient(135deg,#667eea,#764ba2)}
+[data-theme=dark]{--bg:#050a1a;--bg2:#080f26;--card:rgba(12,20,50,.85);--border:rgba(140,160,255,.16);--line:rgba(140,160,255,.2);--text:#e9edff;--muted:#93a0cc;--accent:#b4c0ff;--accent2:#8e9dff;--accent3:#8e9dff;--btn:#2a5298;--navbg:rgba(5,10,26,.78);color-scheme:dark}
+[data-theme=dark] body{background:radial-gradient(1100px 700px at 80% 4%,rgba(42,82,152,.45),transparent 60%),radial-gradient(900px 600px at 0 55%,rgba(118,75,162,.2),transparent 60%),var(--bg);background-attachment:fixed}
+body,nav,.alt,footer,pre,textarea{transition:background-color .4s,border-color .4s,color .4s}
+.tg{background:none;border:1px solid var(--border);color:var(--accent);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1rem;transition:.25s}.tg:hover{border-color:var(--accent2);transform:rotate(25deg)}
+#fb{display:block;width:250px;height:360px;border-radius:12px;object-fit:cover;box-shadow:0 16px 32px rgba(0,0,0,.25),0 32px 64px rgba(0,0,0,.25)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;line-height:1.75;overflow-x:hidden}
+a:focus-visible,button:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+#prog{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--accent3),var(--gold));z-index:300}
+#dna{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 48px;display:flex;justify-content:space-between;align-items:center;background:var(--navbg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(30,60,114,.07)}
+.nav-logo{font-family:Syne;font-weight:800;font-size:1.15rem;letter-spacing:.04em;color:var(--accent)}
+.nav-links{display:flex;gap:28px;list-style:none;margin:0 24px 0 auto}
+.nav-links a{font-family:"DM Mono";font-size:.76rem;color:var(--muted);text-decoration:none;letter-spacing:.08em;position:relative;padding-bottom:3px;transition:color .2s}
+.nav-links a:after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:100%;background:var(--accent3);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.nav-links a:hover,.nav-links a.on{color:var(--accent)}.nav-links a.on:after{transform:scaleX(1)}
+.hero{position:relative;min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr) 280px;align-items:center;gap:48px;padding:120px 80px 80px;background:linear-gradient(135deg,rgba(30,60,114,.88),rgba(42,82,152,.84));overflow:hidden}
+.glow{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(102,126,234,.25),transparent 70%);top:-80px;right:60px;border-radius:50%;animation:drift 9s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-60px,50px)}}
+.hero-content{position:relative;z-index:1;max-width:700px;color:#fff}
+.hero-tag{display:inline-block;font-family:"DM Mono";font-size:.74rem;letter-spacing:.14em;color:var(--gold);border:1px solid rgba(255,215,0,.4);padding:5px 14px;border-radius:100px;margin-bottom:28px}
+.hero h1{font-family:Syne;font-size:clamp(2.8rem,6vw,4.8rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:22px;text-shadow:0 2px 12px rgba(0,0,0,.25)}
+.hero h1 .l2{color:var(--gold);display:block}
+.hero-desc{font-size:1.05rem;color:rgba(255,255,255,.82);max-width:500px;margin-bottom:36px}
+.hero-meta{display:flex;gap:24px;flex-wrap:wrap}
+.meta-pill{display:flex;align-items:center;gap:8px;font-size:.84rem;color:rgba(255,255,255,.75)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 6px rgba(226,198,43,.2)}}
+.strip{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:22px}
+.strip a{display:flex;align-items:center;gap:7px;font-size:.82rem;color:rgba(255,255,255,.65);text-decoration:none;transition:color .2s}.strip a:hover{color:var(--gold)}
+.in{opacity:0;transform:translateY(22px);animation:up .8s ease forwards}
+@keyframes up{to{opacity:1;transform:none}}
+.hero-photo{position:relative;z-index:1;width:100%;display:flex;align-items:center;justify-content:center}
+section{position:relative;z-index:1;padding:90px 210px 90px 80px}
+.label{font-family:"DM Mono";font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:14px}
+.title{font-family:Syne;font-size:clamp(1.9rem,3.2vw,2.7rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;margin-bottom:55px;color:var(--accent)}
+.title span{color:var(--accent3)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent);margin:0 80px}
+.alt{background:color-mix(in srgb,var(--bg2) 84%,transparent)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}.rv.vis{opacity:1;transform:none}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 2px 12px rgba(30,60,114,.06);position:relative;overflow:hidden;transition:box-shadow .3s,border-color .3s}
+.card:before{content:"";position:absolute;inset:0;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(102,126,234,.12),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.card:hover{border-color:rgba(42,82,152,.4);box-shadow:0 12px 32px rgba(30,60,114,.13)}.card:hover:before{opacity:1}
+.grid{display:grid;gap:24px}
+.edu-grid{grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.edu-card{padding:28px 30px}.edu-card:after{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:var(--navy-grad)}
+.edu-degree{font-family:Syne;font-weight:700;font-size:1.05rem;margin-bottom:6px;color:var(--accent)}
+.edu-inst{color:var(--accent2);font-size:.88rem;font-weight:500}
+.edu-year{font-family:"DM Mono";font-size:.74rem;color:var(--muted)}
+.edu-score{margin-top:12px;display:inline-block;background:rgba(30,60,114,.07);color:var(--accent);font-family:"DM Mono";font-size:.8rem;padding:4px 12px;border-radius:100px;border:1px solid rgba(30,60,114,.18);font-weight:500}
+.skills{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.col-title{font-family:"DM Mono";font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.col-title:after{content:"";flex:1;height:1px;background:rgba(30,60,114,.15)}
+.tech{display:flex;flex-direction:column;gap:14px}
+.ts{padding:14px 18px;display:flex;gap:14px;align-items:flex-start;transition:transform .25s}.ts:hover{transform:translateX(5px)}
+.ts:after{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--navy-grad)}
+.ico{width:36px;height:36px;border-radius:8px;background:rgba(30,60,114,.08);border:1px solid rgba(30,60,114,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ts b{font-size:.88rem;font-weight:500;display:block}.ts small{display:block;font-size:.76rem;color:var(--muted)}
+.badge{font-family:"DM Mono";font-size:.68rem;color:var(--accent3);padding:1px 7px;border-radius:100px;background:rgba(102,126,234,.12);border:1px solid rgba(102,126,234,.25);margin-left:6px}
+.soft{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sc{padding:26px 18px;text-align:center;font-family:Syne;font-weight:700;font-size:.9rem;color:var(--accent);transition:transform .25s}.sc:hover{transform:translateY(-4px)}
+.projects{grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:28px}
+.pc{padding:32px;transform-style:preserve-3d;transition:transform .15s ease-out,box-shadow .3s,border-color .3s}
+.pnum{font-family:"DM Mono";font-size:.7rem;color:var(--accent3);letter-spacing:.1em;margin-bottom:12px}
+.pt{font-family:Syne;font-weight:700;font-size:1.12rem;margin-bottom:10px;color:var(--accent);line-height:1.3}
+.pd{font-family:"DM Mono";font-size:.72rem;color:var(--muted);margin-bottom:14px}
+.pp{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:20px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tag{font-family:"DM Mono";font-size:.7rem;padding:3px 10px;border-radius:100px;background:rgba(30,60,114,.07);border:1px solid rgba(30,60,114,.18);color:var(--accent2)}
+.ghl{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;font-weight:500;color:var(--muted);text-decoration:none;border:1px dashed rgba(30,60,114,.3);padding:8px 16px;border-radius:8px;transition:.25s}.ghl:hover{border-color:var(--accent2);color:var(--accent2)}
+/* LAB */
+.lab{padding:28px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tab,.tb{font:500 .84rem "DM Sans";padding:9px 20px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--accent);cursor:pointer;transition:.2s}
+.tab:hover,.tb:hover{border-color:var(--accent2);transform:translateY(-1px)}
+.tab.on{background:var(--navy-grad);color:#fff;border-color:transparent}
+.tools{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:18px}
+.tb{padding:8px 10px;font-size:.78rem}.tb.on{background:var(--purple-grad);color:#fff;border-color:transparent}
+.lab textarea{width:100%;min-height:90px;border:1px solid var(--border);border-radius:10px;background:var(--bg);font:.8rem "DM Mono";padding:12px;color:var(--text);resize:vertical;margin-bottom:10px}
+.lab-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.run{padding:10px 24px;background:var(--btn);color:#fff;border:0;border-radius:8px;font-weight:500;cursor:pointer;transition:.2s}.run:hover{background:var(--accent2);transform:translateY(-1px)}
+.hint{font:.72rem "DM Mono";color:var(--muted)}
+#out{border-top:1px dashed var(--border);padding-top:18px;min-height:60px;animation:up .4s ease}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.k{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 14px}.k small{font:.65rem "DM Mono";color:var(--muted);display:block}.k b{font:700 1.3rem Syne;color:var(--accent)}
+pre{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;font:.74rem/1.6 "DM Mono";overflow-x:auto;white-space:pre-wrap;word-break:break-all;margin-bottom:10px;color:var(--text)}
+.bar{display:grid;grid-template-columns:22px 1fr 50px;gap:10px;align-items:center;font:.72rem "DM Mono";color:var(--muted);margin-bottom:6px}.bar i{height:7px;background:rgba(30,60,114,.08);border-radius:7px;overflow:hidden}.bar s{display:block;height:100%;background:var(--navy-grad);border-radius:7px;animation:grow .8s ease both;transform-origin:left}
+@keyframes grow{from{transform:scaleX(0)}}
+svg.plot{width:100%;height:150px;background:var(--bg);border:1px solid var(--border);border-radius:10px}
+/* exp / certs / activities / contact */
+.int{border-left:5px solid var(--accent2);padding:36px 40px}
+.int h4{font-family:Syne;font-weight:700;font-size:1.05rem;color:var(--accent)}
+.org{color:var(--accent2);font-size:.86rem;font-weight:500}.idate{font:.72rem "DM Mono";color:var(--muted);margin-bottom:14px}
+.int li{list-style:none;color:var(--muted);font-size:.9rem;padding-left:18px;position:relative;margin-bottom:6px}.int li:before{content:"→";position:absolute;left:0;color:var(--accent2)}
+.cg{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px}
+.ci{padding:24px}.ci h3{font-family:Syne;font-size:1.1rem;font-weight:700;margin-bottom:8px;color:var(--accent);line-height:1.25}.ci .is,.ci .dt{color:var(--muted);font-size:.9rem}.ci .dt{margin-bottom:18px}
+.cert-btn{padding:10px 24px;background:var(--btn);color:#fff;border:0;border-radius:8px;font-weight:500;cursor:pointer;transition:.2s}.cert-btn:hover{background:var(--accent2);transform:translateY(-1px)}
+.lb{display:none;position:fixed;inset:0;background:rgba(10,20,50,.88);z-index:999;justify-content:center;align-items:center;padding:24px;backdrop-filter:blur(6px)}.lb.on{display:flex}
+.lbx{max-width:860px;width:100%;background:var(--bg2);border-radius:16px;overflow:hidden;animation:pop .28s ease}@keyframes pop{from{opacity:0;transform:scale(.94)}}
+.lbh{background:var(--navy-grad);color:#fff;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;font-family:Syne;font-weight:700}
+.lbh button{background:rgba(255,255,255,.15);border:0;color:#fff;width:32px;height:32px;border-radius:50%;cursor:pointer}
+.lbx img{width:100%;max-height:70vh;object-fit:contain;padding:16px;background:var(--bg);display:block}.lbm{padding:40px;text-align:center;color:var(--muted);display:none}
+.tl{position:relative;padding-left:28px}.tl:before{content:"";position:absolute;left:0;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent),var(--accent3),transparent);transform-origin:top;transform:scaleY(var(--tl,0))}
+.ai{position:relative;margin-bottom:28px;padding-left:20px}.ai:before{content:"";position:absolute;left:-28px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--accent2);border:2px solid var(--bg2);box-shadow:0 0 0 2px var(--accent2)}
+.ad{font:600 .72rem "DM Mono";color:var(--accent3);letter-spacing:.08em}.at{font-size:.93rem;font-weight:500}.as{font-size:.82rem;color:var(--muted)}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.cl{display:flex;flex-direction:column;gap:14px}
+.cli{display:flex;gap:16px;align-items:center;padding:18px 22px;text-decoration:none;color:var(--text);transition:.25s}.cli:hover{transform:translateX(6px)}
+.cli small{display:block;font:.67rem "DM Mono";color:var(--muted);letter-spacing:.08em}.cli strong{font-size:.9rem;color:var(--accent)}
+.cr p{color:var(--muted);font-size:.95rem;margin-bottom:18px;line-height:1.8}
+.loc{border-left:4px solid var(--accent2);padding:18px 22px;margin-top:18px}.loc small{font:.67rem "DM Mono";color:var(--muted);letter-spacing:.1em;display:block}.loc span{font-weight:600;color:var(--accent)}
+footer{text-align:center;padding:28px 80px;font:.72rem "DM Mono";color:var(--muted);border-top:1px solid var(--border);background:var(--card);letter-spacing:.06em;position:relative;z-index:1}
+@media(max-width:900px){nav{padding:16px 24px}.nav-links{display:none}.hero{grid-template-columns:1fr;padding:120px 28px 80px;gap:32px}.hero-photo{width:100%;height:auto;margin:0;order:-1}.hero-content{max-width:700px}section{padding:60px 24px}.divider{margin:0 24px}.skills,.cgrid{grid-template-columns:1fr;gap:36px}footer{padding:24px}#dna{opacity:.35}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+</style>
 </head>
 <body>
+<div id="prog"></div><canvas id="dna" aria-hidden="true"></canvas>
+<!-- Main navigation and persistent theme control. -->
+<nav><div class="nav-logo">Portfolio</div>
+<ul class="nav-links" id="nl"><li><a href="#education">EDUCATION</a></li><li><a href="#skills">SKILLS</a></li><li><a href="#projects">PROJECTS</a></li><li><a href="#lab">LAB</a></li><li><a href="#experience">EXPERIENCE</a></li><li><a href="#credentials">CERTS</a></li><li><a href="#activities">ACTIVITIES</a></li><li><a href="#contact">CONTACT</a></li></ul><button class="tg" id="tg" aria-label="Toggle light and dark theme"></button></nav>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">Portfolio</div>
-  <ul class="nav-links">
-    <li><a href="#education">EDUCATION</a></li>
-    <li><a href="#skills">SKILLS</a></li>
-    <li><a href="#projects">PROJECTS</a></li>
-    <li><a href="#experience">EXPERIENCE</a></li>
-    <li><a href="#credentials">CERTS</a></li>
-    <li><a href="#activities">ACTIVITIES</a></li>
-    <li><a href="#contact">CONTACT</a></li>
-  </ul>
-</nav>
+<div class="lb" id="lb"><div class="lbx"><div class="lbh"><span id="lbt">Certificate</span><button id="lbc" aria-label="Close">✕</button></div><img id="lbi" alt="Certificate"><div class="lbm" id="lbm">Certificate image could not be loaded. Check that the file is in the same folder.</div></div></div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
-  <div class="lightbox-box">
-    <div class="lightbox-header">
-      <h3 id="lb-title">Certificate</h3>
-      <button class="lightbox-close" onclick="closeLightboxBtn()">✕</button>
-    </div>
-    <img class="lightbox-img" id="lb-img" src="" alt="Certificate">
-  </div>
+<!-- Introductory hero section; the canvas animation is rendered behind it. -->
+<section class="hero" id="home" style="padding:120px 80px 80px">
+<div class="glow"></div>
+<div class="hero-content">
+<div class="hero-tag in" style="animation-delay:.1s">✦ B.Tech Biotechnology · LPU</div>
+<h1 class="in" style="animation-delay:.2s"><span id="n1">Pranav</span><span class="l2" id="n2">Shirure</span></h1>
+<p class="hero-desc in" style="animation-delay:.3s">Biotechnology student with a keen interest in bioinformatics, QA/QC, and building tools that bridge wet-lab science with computational methods.</p>
+<div class="hero-meta in" style="animation-delay:.4s"><div class="meta-pill"><span class="dot"></span> Lovely Professional University, Punjab</div><div class="meta-pill"><span class="dot"></span> CGPA 7.44</div><div class="meta-pill"><span class="dot"></span> Latur, Maharashtra</div></div>
+<div class="strip in" style="animation-delay:.55s">
+<a href="mailto:pranavshirure@gmail.com">📧 pranavshirure@gmail.com</a><a href="tel:+918263007688">📞 +91 8263007688</a>
+<a href="https://www.linkedin.com/in/pranavshirure22" target="_blank" rel="noopener noreferrer">in LinkedIn</a>
+<a href="https://github.com/pranav-shirure22" target="_blank" rel="noopener noreferrer">GitHub</a></div>
 </div>
-
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-tag">✦ B.Tech Biotechnology · LPU</div>
-    <h1>
-      Pranav
-      <span class="line2">Shirure</span>
-    </h1>
-    <p class="hero-desc">Biotechnology student with a keen interest in bioinformatics, QA/QC, and building tools that bridge wet-lab science with computational methods.</p>
-    <div class="hero-meta">
-      <div class="meta-pill"><span class="dot"></span> Lovely Professional University, Punjab</div>
-      <div class="meta-pill"><span class="dot"></span> CGPA 7.44</div>
-      <div class="meta-pill"><span class="dot"></span> Latur, Maharashtra</div>
-    </div>
-
-    <div class="hero-contact-strip">
-      <a href="mailto:pranavshirure@gmail.com" class="hero-contact-item">
-        <span class="hci-icon">📧</span><span>pranavshirure@gmail.com</span>
-      </a>
-      <a href="tel:+918263007688" class="hero-contact-item">
-        <span class="hci-icon">📞</span><span>+91 8263007688</span>
-      </a>
-      <a href="https://www.linkedin.com/in/pranavshirure22" target="_blank" rel="noopener noreferrer" class="hero-contact-item">
-        <span class="hci-icon">in</span><span>LinkedIn</span>
-      </a>
-      <a href="https://github.com/pranav-shirure22" target="_blank" rel="noopener noreferrer" class="hero-contact-item">
-        <span class="hci-icon">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        </span><span>GitHub</span>
-      </a>
-    </div>
-  </div>
-  <div class="hero-photo">
-    <img src="pranav.jpeg" alt="Pranav Shirure">
-  </div>
+<div class="hero-photo" id="stage"><img id="fb" src="pranav.jpeg" alt="Pranav Shirure"></div>
 </section>
-
 <div class="divider"></div>
 
-<!-- EDUCATION -->
-<section id="education">
-  <h2 class="section-title">Academic <span>Background</span></h2>
-  <div class="edu-grid">
-    <div class="edu-card">
-      <div class="edu-degree">B.Tech in Biotechnology</div>
-      <div class="edu-institution">Lovely Professional University</div>
-      <div class="edu-year">Aug 2023 – Present · Punjab, India</div>
-      <div class="edu-score">CGPA: 7.44 (Current)</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-degree">Class XII (HSC)</div>
-      <div class="edu-institution">Jawahar Navodaya Vidyalaya, Latur</div>
-      <div class="edu-year">July 2022</div>
-      <div class="edu-score">Aggregate: 85.4%</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-degree">Class X (SSC)</div>
-      <div class="edu-institution">Jawahar Navodaya Vidyalaya, Latur</div>
-      <div class="edu-year">May 2020</div>
-      <div class="edu-score">Aggregate: 87.2%</div>
-    </div>
-  </div>
-</section>
-
+<!-- Education, skills, and portfolio projects. -->
+<section id="education"><h2 class="title rv">Academic <span>Background</span></h2>
+<div class="grid edu-grid">
+<div class="card edu-card rv"><div class="edu-degree">B.Tech in Biotechnology</div><div class="edu-inst">Lovely Professional University</div><div class="edu-year">Aug 2023 – Present · Punjab, India</div><div class="edu-score">CGPA: 7.44 (Current)</div></div>
+<div class="card edu-card rv"><div class="edu-degree">Class XII (HSC)</div><div class="edu-inst">Jawahar Navodaya Vidyalaya, Latur</div><div class="edu-year">July 2022</div><div class="edu-score">Aggregate: 85.4%</div></div>
+<div class="card edu-card rv"><div class="edu-degree">Class X (SSC)</div><div class="edu-inst">Jawahar Navodaya Vidyalaya, Latur</div><div class="edu-year">May 2020</div><div class="edu-score">Aggregate: 87.2%</div></div></div></section>
 <div class="divider"></div>
 
-<!-- SKILLS -->
-<section id="skills" class="section-alt">
-  <div class="section-label">CAPABILITIES</div>
-  <h2 class="section-title">Skills &amp; <span>Competencies</span></h2>
-  <div class="skills-wrapper">
-
-    <!-- Technical Skills -->
-    <div>
-      <div class="skills-column-title">Technical Skills</div>
-      <div class="tech-skill-list">
-        <div class="tech-skill-item">
-          <div class="skill-icon">🧬</div>
-          <div class="skill-text">
-            Cell Designing
-            <small>Cell engineering principles and design methodologies</small>
-          </div>
-        </div>
-        <div class="tech-skill-item">
-          <div class="skill-icon">🔬</div>
-          <div class="skill-text">
-            Recombinant DNA Technology
-            <small>Theory and hands-on application of rDNA techniques</small>
-          </div>
-        </div>
-        <div class="tech-skill-item">
-          <div class="skill-icon">⚗️</div>
-          <div class="skill-text">
-            Lab Instrumentation
-            <small>Performing rDNA experiments using specialised lab equipment</small>
-          </div>
-        </div>
-        <div class="tech-skill-item">
-          <div class="skill-icon">💻</div>
-          <div class="skill-text">
-            Bioinformatics & Data Science
-            <small>Sequence analysis, BLAST, NCBI databases, Python/Biopython</small>
-          </div>
-        </div>
-        <div class="tech-skill-item">
-          <div class="skill-icon">💊</div>
-          <div class="skill-text">
-            In Silico Drug Discovery <span class="skill-learning-badge">Learning</span>
-            <small>Computational approaches to drug target identification &amp; docking</small>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Power / Soft Skills -->
-    <div>
-      <div class="skills-column-title">Power Skills</div>
-      <div class="soft-skill-grid">
-        <div class="soft-skill-card">
-        
-          <div class="soft-skill-name">Team Work</div>
-        </div>
-        <div class="soft-skill-card">
-      
-          <div class="soft-skill-name">Curiosity</div>
-        </div>
-        <div class="soft-skill-card">
-         
-          <div class="soft-skill-name">Quick Learner</div>
-        </div>
-        <div class="soft-skill-card">
-          <span class="soft-skill-emoji">🌱</span>
-          <div class="soft-skill-name">Adaptability</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
+<section id="skills" class="alt"><div class="label rv">CAPABILITIES</div><h2 class="title rv">Skills &amp; <span>Competencies</span></h2>
+<div class="skills"><div><div class="col-title">Technical Skills</div><div class="tech">
+<div class="card ts rv"><div class="ico">🧬</div><div><b>Cell Designing</b><small>Cell engineering principles and design methodologies</small></div></div>
+<div class="card ts rv"><div class="ico">🔬</div><div><b>Recombinant DNA Technology</b><small>Theory and hands-on application of rDNA techniques</small></div></div>
+<div class="card ts rv"><div class="ico">⚗️</div><div><b>Lab Instrumentation</b><small>Performing rDNA experiments using specialised lab equipment</small></div></div>
+<div class="card ts rv"><div class="ico">💻</div><div><b>Bioinformatics &amp; Data Science</b><small>Sequence analysis, BLAST, NCBI databases, Python/Biopython</small></div></div>
+<div class="card ts rv"><div class="ico">💊</div><div><b>In Silico Drug Discovery <span class="badge">Learning</span></b><small>Computational approaches to drug target identification &amp; docking</small></div></div></div></div>
+<div><div class="col-title">Power Skills</div><div class="soft"><div class="card sc rv">Team Work</div><div class="card sc rv">Curiosity</div><div class="card sc rv">Quick Learner</div><div class="card sc rv">🌱 Adaptability</div></div></div></div></section>
 <div class="divider"></div>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <h2 class="section-title">My  <span> Projects</span></h2>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-num">PROJECT — 01</div>
-      <h3 class="project-title">BioScope Desktop Bioinformatics Tool</h3>
-      <div class="project-date">December 2025</div>
-      <p class="project-desc">A Python/Tkinter application integrating Biopython and NCBI services for sequence retrieval, BLAST (N/P/X), nucleotide/protein composition, motif/ORF finding, physicochemical calculations (pI, MW, GRAVY, instability index), hydrophobicity plots, secondary structure analysis, and embedded 3Dmol protein visualization. Designed to support hands-on bioinformatics education and rapid sequence exploration.</p>
-      <div class="tech-tags">
-        <span class="tech-tag">Python</span>
-        <span class="tech-tag">Tkinter</span>
-        <span class="tech-tag">Biopython</span>
-        <span class="tech-tag">NCBI Entrez</span>
-        <span class="tech-tag">3Dmol</span>
-        <span class="tech-tag">BLAST</span>
-      </div>
-<a href="https://bioscope-app.streamlit.app" class="github-link" target="_blank" rel="noopener noreferrer">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-    <polyline points="15 3 21 3 21 9"/>
-    <line x1="10" y1="14" x2="21" y2="3"/>
-  </svg>
-  Live App
-</a>
-    </div>
-    <div class="project-card">
-      <div class="project-num">PROJECT — 02</div>
-      <h3 class="project-title">Proximity Sensing Arduino Project</h3>
-      <div class="project-date">September 2023</div>
-      <p class="project-desc">Developed an Arduino-based proximity sensor as a team project, integrating microprocessor technology to optimize sensing performance. Gained practical skills in Arduino programming, hardware integration, cross-functional collaboration, and technical documentation/reporting.</p>
-      <div class="tech-tags">
-        <span class="tech-tag">Arduino</span>
-        <span class="tech-tag">Embedded Systems</span>
-        <span class="tech-tag">Microprocessors</span>
-        <span class="tech-tag">Sensor Tech</span>
-      </div>
-    </div>
-  </div>
-</section>
-
+<section id="projects"><h2 class="title rv">My <span>Projects</span></h2>
+<div class="grid projects">
+<div class="card pc tilt rv"><div class="pnum">PROJECT — 01</div><h3 class="pt">BioScope Desktop Bioinformatics Tool</h3><div class="pd">December 2025</div>
+<p class="pp">A Python/Tkinter application integrating Biopython and NCBI services for sequence retrieval, BLAST (N/P/X), nucleotide/protein composition, motif/ORF finding, physicochemical calculations (pI, MW, GRAVY, instability index), hydrophobicity plots, secondary structure analysis, and embedded 3Dmol protein visualization. Designed to support hands-on bioinformatics education and rapid sequence exploration.</p>
+<div class="tags"><span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">Biopython</span><span class="tag">NCBI Entrez</span><span class="tag">3Dmol</span><span class="tag">BLAST</span></div>
+<a href="https://bioscope-app.streamlit.app" class="ghl" target="_blank" rel="noopener noreferrer">↗ Live App</a> <a href="#lab" class="ghl">Try it below</a></div>
+<div class="card pc tilt rv"><div class="pnum">PROJECT — 02</div><h3 class="pt">Proximity Sensing Arduino Project</h3><div class="pd">September 2023</div>
+<p class="pp">Developed an Arduino-based proximity sensor as a team project, integrating microprocessor technology to optimize sensing performance. Gained practical skills in Arduino programming, hardware integration, cross-functional collaboration, and technical documentation/reporting.</p>
+<div class="tags"><span class="tag">Arduino</span><span class="tag">Embedded Systems</span><span class="tag">Microprocessors</span><span class="tag">Sensor Tech</span></div></div></div></section>
 <div class="divider"></div>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="section-alt">
-  <h2 class="section-title">Industry <span>Exposure</span></h2>
-  <div class="internship-card">
-    <div class="internship-body">
-      <h4>Quality Assurance / Quality Control Intern</h4>
-      <div class="internship-org">LORDS Life Sciences and Research Laboratory Pvt. Ltd.</div>
-      <div class="internship-date">July 2025</div>
-      <ul class="internship-points">
-        <li>Assisted in QA/QC activities including basic dissolution testing and quality checks of pharmaceutical formulations.</li>
-        <li>Gained exposure to analytical techniques including HPLC and GC in a regulated lab environment.</li>
-        <li>Practiced and understood Good Laboratory Practices (GLPs) throughout the internship period.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
+<!-- Interactive, client-side sequence analysis tools. -->
+<section id="lab" class="alt"><div class="label rv">Try some features of my tool BIOScope</div><h2 class="title rv">BioScopeLite <span>Lab</span></h2>
+<div class="card lab rv">
+<div class="tabs" id="tabs"><button class="tab on" data-t="G">GeneScope</button><button class="tab" data-t="P">ProteinScope</button><button class="tab" data-t="A">AlignScope</button></div>
+<div class="tools" id="tools"></div>
+<textarea id="s1" spellcheck="false" aria-label="Sequence"></textarea>
+<textarea id="s2" spellcheck="false" aria-label="Second sequence" style="display:none"></textarea>
+<div class="lab-row"><button class="run" id="run">Run tool</button><button class="tb" id="ex">Load example</button><span class="hint" id="hint"></span></div>
+<div id="out"></div></div></section>
 <div class="divider"></div>
 
-<!-- CREDENTIALS & TRAINING -->
-<section id="credentials">
-  <div class="section-label">CERTIFIED</div>
-  <div class="section-title">Credentials & Training <span>Certificates</span></div>
-  
-  <div class="cert-grid">
-    <div class="cert-card">
-      <div class="cert-info">
-        <h3>Copyright Certificate for BioScope </h3>
-        <p class="issuer">Copyright Office Govern Of India</p>
-        <h3> Application Number: SW-5836/2026-CO </h3>
-        <p class="date"> 9 February 2026</p>
-        <a href="copyright.jpeg" target="_self">
-          <button class="cert-btn">View Certificate</button>
-        </a>
-      </div>
-    </div>
-    
-
-   
-    <div class="cert-card">
-      <div class="cert-info">
-        <h3>Certificate for 3  days workshop on ICP-OES </h3>
-        <p class="issuer">  Central Instrumentation Facility, Lovely Professional University</p>
-        <p class="date">December 2025</p>
-        <a href="icpoes.jpeg" target="_self">
-          <button class="cert-btn">View Certificate</button>
-        </a>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-info">
-        <h3>Vaccine Technology – 2 Day Offline Workshop</h3>
-        <p class="issuer">Ethical Edufabrica Pvt. Ltd. × Advitiya, IIT Ropar</p>
-        <p class="date">16–17 February 2024 • IIT Ropar</p>
-        <a href="vt.jpeg" target="_self">
-          <button class="cert-btn">View Certificate</button>
-        </a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-info">
-        <h3>Public Speaking – Certificate of Merit</h3>
-        <p class="issuer">Centre for Professional Enhancement, Lovely Professional University</p>
-        <p class="date">Oct–Nov 2023 • Grade: A</p>
-        <a href="ps.png" target="_self">
-          <button class="cert-btn">View Certificate</button>
-        </a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-info">
-        <h3>TCS iON Career Edge – Young Professional</h3>
-        <p class="issuer">Tata Consultancy Services</p>
-        <p class="date">01–17 September 2023</p>
-        <a href="tcs.jpeg" target="_self">
-          <button class="cert-btn">View Certificate</button>
-        </a>
-      </div>
-    </div>
-
-    <div class="cert-card">
-      <div class="cert-info">
-        <h3>Certificate Course in Tally</h3>
-        <p class="issuer">Gurudatta Computer Education, Nale gaon</p>
-        <p class="date">March–May 2018 • Grade: A</p>
-        <a href="tally.jpeg" target="_self">
-          <button class="cert-btn">View Certificate</button>
-        </a>
-      </div>
-    </div>
-    
-
-  </div>
-</section>
-
+<!-- Experience, credentials, activities, and contact details. -->
+<section id="experience"><h2 class="title rv">Industry <span>Exposure</span></h2>
+<div class="card int rv"><h4>Quality Assurance / Quality Control Intern</h4><div class="org">LORDS Life Sciences and Research Laboratory Pvt. Ltd.</div><div class="idate">July 2025</div>
+<ul><li>Assisted in QA/QC activities including basic dissolution testing and quality checks of pharmaceutical formulations.</li><li>Gained exposure to analytical techniques including HPLC and GC in a regulated lab environment.</li><li>Practiced and understood Good Laboratory Practices (GLPs) throughout the internship period.</li></ul></div></section>
 <div class="divider"></div>
 
-<!-- ACTIVITIES -->
-<section id="activities" class="section-alt">
-  <h2 class="section-title">Beyond the <span>Curriculum</span></h2>
-  <div class="activities-timeline">
-    <div class="activity-item">
-      <div class="activity-date">2026</div>
-      <div class="activity-text">Attended India AI Impact Summit 2026</div>
-      <div class="activity-sub">New Delhi</div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-date">Sept 2025</div>
-      <div class="activity-text">Volunteered to organize the SSG-BRIDGE Sustainable City International Symposium</div>
-      <div class="activity-sub">UK–India Collaboration, LPU</div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-date">Aug 2025</div>
-      <div class="activity-text">Student Campus Connect Committee Coordinator</div>
-      <div class="activity-sub">LPU School of Bioengineering & Biosciences (SBBS)</div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-date">Feb 2025</div>
-      <div class="activity-text">Presented poster on CRISPR Technology</div>
-      <div class="activity-sub">Lovely Professional University</div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-date">May 2024 – Present</div>
-      <div class="activity-text">Volunteer at LOKSAHBHAG BAHUDDESHIY SANSTHA (NGO)</div>
-      <div class="activity-sub">Shirur Anantpal, Maharashtra</div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-date">April 2022</div>
-      <div class="activity-text">Performed a monologue at Chhatrapati Shivaji Maharaj Chowk, Latur</div>
-      <div class="activity-sub">Public awareness campaign on responsible water usage</div>
-    </div>
-  </div>
-</section>
-
+<section id="credentials" class="alt"><div class="label rv">CERTIFIED</div><h2 class="title rv">Credentials &amp; Training <span>Certificates</span></h2>
+<div class="grid cg" id="certs">
+<div class="card ci tilt rv"><h3>Copyright Certificate for BioScope</h3><p class="is">Copyright Office Govern Of India</p><h3 style="font-size:.95rem;margin-top:6px">Application Number: SW-5836/2026-CO</h3><p class="dt">9 February 2026</p><button class="cert-btn" data-s="copyright.jpeg" data-t="Copyright Certificate for BioScope">View Certificate</button></div>
+<div class="card ci tilt rv"><h3>Certificate for 3 days workshop on ICP-OES</h3><p class="is">Central Instrumentation Facility, Lovely Professional University</p><p class="dt">December 2025</p><button class="cert-btn" data-s="icpoes.jpeg" data-t="ICP-OES Workshop Certificate">View Certificate</button></div>
+<div class="card ci tilt rv"><h3>Vaccine Technology – 2 Day Offline Workshop</h3><p class="is">Ethical Edufabrica Pvt. Ltd. × Advitiya, IIT Ropar</p><p class="dt">16–17 February 2024 • IIT Ropar</p><button class="cert-btn" data-s="vt.jpeg" data-t="Vaccine Technology Certificate">View Certificate</button></div>
+<div class="card ci tilt rv"><h3>Public Speaking – Certificate of Merit</h3><p class="is">Centre for Professional Enhancement, Lovely Professional University</p><p class="dt">Oct–Nov 2023 • Grade: A</p><button class="cert-btn" data-s="ps.png" data-t="Public Speaking Certificate">View Certificate</button></div>
+<div class="card ci tilt rv"><h3>TCS iON Career Edge – Young Professional</h3><p class="is">Tata Consultancy Services</p><p class="dt">01–17 September 2023</p><button class="cert-btn" data-s="tcs.jpeg" data-t="TCS iON Certificate">View Certificate</button></div>
+<div class="card ci tilt rv"><h3>Certificate Course in Tally</h3><p class="is">Gurudatta Computer Education, Nale gaon</p><p class="dt">March–May 2018 • Grade: A</p><button class="cert-btn" data-s="tally.jpeg" data-t="Tally Certificate">View Certificate</button></div></div></section>
 <div class="divider"></div>
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2 class="section-title">Let's <span>Connect</span></h2>
-  <div class="contact-grid">
-    <div class="contact-links">
-      <a href="mailto:pranavshirure@gmail.com" class="contact-link">
-        <div class="contact-link-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </div>
-        <div class="contact-link-info"><small>EMAIL</small><strong>pranavshirure@gmail.com</strong></div>
-      </a>
-      <a href="tel:+918263007688" class="contact-link">
-        <div class="contact-link-info"><small>PHONE</small><strong>+91 8263007688</strong></div>
-      </a>
-      <a href="https://www.linkedin.com/in/pranavshirure22" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <div class="contact-link-info"><small>LINKEDIN</small><strong>linkedin.com/in/pranavshirure22</strong></div>
-      </a>
-      <a href="https://github.com/pranav-shirure22" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <div class="contact-link-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-        </div>
-        <div class="contact-link-info"><small>GITHUB</small><strong>github.com/pranav-shirure22</strong></div>
-      </a>
-    </div>
-    <div class="contact-right">
-      <p>I'm currently a 3rd year B.Tech Biotechnology student at LPU, actively exploring opportunities in bioinformatics, pharmaceutical QA/QC, and computational biology. Open to internships, collaborations, and research opportunities.</p>
-      <p>Feel free to reach out — I'd love to connect!</p>
-      <div class="contact-location">
-        <small>BASED IN</small>
-        <span>Latur, Maharashtra, India — 413524</span>
-      </div>
-    </div>
-  </div>
-</section>
+<section id="activities"><h2 class="title rv">Beyond the <span>Curriculum</span></h2>
+<div class="tl" id="tl">
+<div class="ai rv"><div class="ad">2026</div><div class="at">Attended India AI Impact Summit 2026</div><div class="as">New Delhi</div></div>
+<div class="ai rv"><div class="ad">Sept 2025</div><div class="at">Volunteered to organize the SSG-BRIDGE Sustainable City International Symposium</div><div class="as">UK–India Collaboration, LPU</div></div>
+<div class="ai rv"><div class="ad">Aug 2025</div><div class="at">Student Campus Connect Committee Coordinator</div><div class="as">LPU School of Bioengineering &amp; Biosciences (SBBS)</div></div>
+<div class="ai rv"><div class="ad">Feb 2025</div><div class="at">Presented poster on CRISPR Technology</div><div class="as">Lovely Professional University</div></div>
+<div class="ai rv"><div class="ad">May 2024 – Present</div><div class="at">Volunteer at LOKSAHBHAG BAHUDDESHIY SANSTHA (NGO)</div><div class="as">Shirur Anantpal, Maharashtra</div></div>
+<div class="ai rv"><div class="ad">April 2022</div><div class="at">Performed a monologue at Chhatrapati Shivaji Maharaj Chowk, Latur</div><div class="as">Public awareness campaign on responsible water usage</div></div></div></section>
+<div class="divider"></div>
 
-<footer>
-  Pranav Shirure · B.Tech Biotechnology, LPU · 2026
-</footer>
+<section id="contact" class="alt"><h2 class="title rv">Let's <span>Connect</span></h2>
+<div class="cgrid"><div class="cl">
+<a href="mailto:pranavshirure@gmail.com" class="card cli rv"><div><small>EMAIL</small><strong>pranavshirure@gmail.com</strong></div></a>
+<a href="tel:+918263007688" class="card cli rv"><div><small>PHONE</small><strong>+91 8263007688</strong></div></a>
+<a href="https://www.linkedin.com/in/pranavshirure22" target="_blank" rel="noopener noreferrer" class="card cli rv"><div><small>LINKEDIN</small><strong>linkedin.com/in/pranavshirure22</strong></div></a>
+<a href="https://github.com/pranav-shirure22" target="_blank" rel="noopener noreferrer" class="card cli rv"><div><small>GITHUB</small><strong>github.com/pranav-shirure22</strong></div></a></div>
+<div class="cr rv"><p>I'm currently a 3rd year B.Tech Biotechnology student at LPU, actively exploring opportunities in bioinformatics, pharmaceutical QA/QC, and computational biology. Open to internships, collaborations, and research opportunities.</p><p>Feel free to reach out — I'd love to connect!</p>
+<div class="card loc"><small>BASED IN</small><span>Latur, Maharashtra, India — 413524</span></div></div></div></section>
+<footer>Pranav Shirure · B.Tech Biotechnology, LPU · 2026</footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-window.copyright    = "copyright.jpeg";
-window.icpoes = "icpoes.jpeg";
-window.vt     = "vt.jpeg";
-window.ps     = "ps.png";
-window.tcs    = "tcs.jpeg";
-window.tally  = "tally.jpeg";
+(function(){
+"use strict";
+var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
+var RM=matchMedia("(prefers-reduced-motion:reduce)").matches,clamp=function(v,a,b){return Math.max(a,Math.min(b,v))};
+/* Animate the name on load unless reduced motion is requested. */
+function scr(el){if(RM)return;var t=el.textContent,n=t.length,s=performance.now();(function f(now){var p=(now-s)/900,o="";for(var i=0;i<n;i++)o+=p>=.2+.8*i/n?t[i]:"ACGT"[Math.random()*4|0];el.textContent=p<1?o:t;if(p<1)requestAnimationFrame(f)})(s)}
+setTimeout(function(){scr($("#n1"));scr($("#n2"))},350);
+/* Reveal content as it enters the viewport. */
+var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add("vis");io.unobserve(x.target)}})},{threshold:.12});
+$$(".rv").forEach(function(el,i){el.style.transitionDelay=(i%4)*70+"ms";io.observe(el)});
+/* Add pointer-following highlights and a subtle tilt to interactive cards. */
+$$(".card").forEach(function(c){c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px");
+if(c.classList.contains("tilt")&&!RM){c.style.transform="perspective(900px) rotateY("+((e.clientX-r.left)/r.width-.5)*8+"deg) rotateX("+(-((e.clientY-r.top)/r.height-.5))*8+"deg)"}});
+c.addEventListener("mouseleave",function(){if(c.classList.contains("tilt"))c.style.transform=""})});
+/* Keep scroll progress, active navigation, and the timeline in sync. */
+var prog=$("#prog"),tl=$("#tl");
+function pg(){var h=document.documentElement.scrollHeight-innerHeight;return h>0?clamp(scrollY/h,0,1):0}
+function onS(){prog.style.transform="scaleX("+pg()+")";var r=tl.getBoundingClientRect();tl.style.setProperty("--tl",clamp((innerHeight*.8-r.top)/r.height,0,1));
+var cur="";$$("section[id]").forEach(function(s){if(s.getBoundingClientRect().top<innerHeight*.45)cur=s.id});$$("#nl a").forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+cur)})}
+addEventListener("scroll",onS,{passive:true});onS();
+/* Restore the saved theme or use the operating-system preference. */
+var th=document.documentElement;
+function setT(t){th.dataset.theme=t;try{localStorage.setItem("th",t)}catch(e){}$("#tg").textContent=t==="dark"?"☀":"☾"}
+var sv;try{sv=localStorage.getItem("th")}catch(e){}
+setT(sv||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"));
+$("#tg").onclick=function(){setT(th.dataset.theme==="dark"?"light":"dark")};
+/* Render the DNA helix and particle network on a fixed canvas. */
+var cv=$("#dna"),heroEl=$("#home");
+(function(){
+if(typeof THREE==="undefined")return fail();
+var rd;try{rd=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true})}catch(e){return fail()}
+var w=innerWidth,h=innerHeight,mob=w<900,FOV=32,DIST=32,wpp=1,i;
+rd.setPixelRatio(Math.min(devicePixelRatio||1,mob?1.5:2));rd.setClearColor(0,0);
+var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(FOV,1,.1,100);cam.position.z=DIST;
+sc.add(new THREE.AmbientLight(0xffffff,.55));
+var dl=new THREE.DirectionalLight(0xffffff,.6);dl.position.set(6,9,12);sc.add(dl);
+var p1=new THREE.PointLight(0x9fb0ff,.7,80);p1.position.set(10,6,14);sc.add(p1);
+var p2=new THREE.PointLight(0xe2c62b,.6,80);p2.position.set(-8,-6,10);sc.add(p2);
+var H=10,R=1.9,TU=2.4,PA=mob?20:26,CA=0x6678ff,CB=0xe8c42a,helix=new THREE.Group(),spin=new THREE.Group();helix.add(spin);
+var glows=[],gc=document.createElement("canvas");gc.width=gc.height=64;var g2=gc.getContext("2d"),gr=g2.createRadialGradient(32,32,0,32,32,32);
+gr.addColorStop(0,"rgba(255,255,255,1)");gr.addColorStop(.35,"rgba(255,255,255,.45)");gr.addColorStop(1,"rgba(255,255,255,0)");g2.fillStyle=gr;g2.fillRect(0,0,64,64);var gt=new THREE.CanvasTexture(gc);
+function sp(c,x,s,o){var q=new THREE.Sprite(new THREE.SpriteMaterial({map:gt,color:c,transparent:true,opacity:o,blending:THREE.AdditiveBlending,depthWrite:false}));q.scale.set(s,s,1);q.position.x=x;glows.push([q.material,o]);return q}
+function M(c,e,n,r){return new THREE.MeshStandardMaterial({color:c,emissive:e,emissiveIntensity:n,roughness:r})}
+function strand(off,col,em){var pts=[];for(var i=0;i<=160;i++){var t=i/160,a=t*TU*Math.PI*2+off;pts.push(new THREE.Vector3(Math.cos(a)*R,(t-.5)*H,Math.sin(a)*R))}
+spin.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),320,.17,10,false),new THREE.MeshStandardMaterial({color:col,emissive:em,emissiveIntensity:.3,roughness:.3,metalness:.15})))}
+strand(0,CA,0x2a3a9a);strand(Math.PI,CB,0x806700);
+var ng=new THREE.SphereGeometry(.3,20,20),hg=new THREE.CylinderGeometry(.075,.075,R,8);
+var nA=M(CA,0x3a4ab8,.45,.3),nB=M(CB,0x9a7d00,.45,.3),hA=M(0x8d9bff,0x3a4ab8,.2,.5),hB=M(0xf0d96a,0x9a7d00,.2,.5);
+for(i=0;i<PA;i++){var t=(i+.5)/PA,pv=new THREE.Group();pv.position.y=(t-.5)*H;pv.rotation.y=-t*TU*Math.PI*2;
+var a1=new THREE.Mesh(hg,hA);a1.rotation.z=Math.PI/2;a1.position.x=R/2;var b1=new THREE.Mesh(hg,hB);b1.rotation.z=Math.PI/2;b1.position.x=-R/2;
+var n1=new THREE.Mesh(ng,nA);n1.position.x=R;var n2=new THREE.Mesh(ng,nB);n2.position.x=-R;
+pv.add(a1,b1,n1,n2,sp(CA,R,1.15,.3),sp(CB,-R,1.15,.3));spin.add(pv)}
+var bead=new THREE.Group();var bm=new THREE.MeshBasicMaterial({color:0xffffff});bead.add(new THREE.Mesh(new THREE.SphereGeometry(.34,20,20),bm));bead.add(sp(0xffffff,0,2.6,.9));spin.add(bead);
+var BX=.1,BZ=-.22;helix.rotation.set(BX,0,BZ);sc.add(helix);
+var N=mob?36:80,LK=3.8,hw=16,hh=10,ps=new Float32Array(N*3),vl=[];
+for(i=0;i<N;i++){ps[i*3]=(Math.random()-.5)*32;ps[i*3+1]=(Math.random()-.5)*20;ps[i*3+2]=(Math.random()-.5)*8-3;vl.push([(Math.random()-.5)*.008,(Math.random()-.5)*.008])}
+var pgm=new THREE.BufferGeometry();pgm.setAttribute("position",new THREE.BufferAttribute(ps,3));
+var pmt=new THREE.PointsMaterial({size:.8,map:gt,color:0xcfd8ff,transparent:true,depthWrite:false,opacity:.8});sc.add(new THREE.Points(pgm,pmt));
+var lp=new Float32Array(N*N*6),lg=new THREE.BufferGeometry();lg.setAttribute("position",new THREE.BufferAttribute(lp,3));lg.setDrawRange(0,0);
+var lmt=new THREE.LineBasicMaterial({color:0xaab8ff,transparent:true,opacity:.2});sc.add(new THREE.LineSegments(lg,lmt));
+function parts(){var k=0,a=pgm.attributes.position.array,i,j;for(i=0;i<N;i++){a[i*3]+=vl[i][0];a[i*3+1]+=vl[i][1];if(Math.abs(a[i*3])>hw)vl[i][0]*=-1;if(Math.abs(a[i*3+1])>hh)vl[i][1]*=-1}
+for(i=0;i<N;i++)for(j=i+1;j<N;j++){var dx=a[i*3]-a[j*3],dy=a[i*3+1]-a[j*3+1],dz=a[i*3+2]-a[j*3+2];if(dx*dx+dy*dy+dz*dz<LK*LK){lp[k++]=a[i*3];lp[k++]=a[i*3+1];lp[k++]=a[i*3+2];lp[k++]=a[j*3];lp[k++]=a[j*3+1];lp[k++]=a[j*3+2]}}
+pgm.attributes.position.needsUpdate=true;lg.attributes.position.needsUpdate=true;lg.setDrawRange(0,k/3)}
+function rs(){w=innerWidth;h=innerHeight;mob=w<900;rd.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();wpp=2*Math.tan(FOV*Math.PI/360)*DIST/h;hh=Math.tan(FOV*Math.PI/360)*DIST*1.1;hw=hh*cam.aspect}
+var mx=0,my=0,tx=0,ty=0,ck=new THREE.Clock();addEventListener("mousemove",function(e){tx=(e.clientX/w-.5)*2;ty=(e.clientY/h-.5)*2});
+function draw(){var t=ck.getElapsedTime(),s=scrollY,e=clamp(s/(heroEl.offsetHeight*.7),0,1);e=e*e*(3-2*e);mx+=(tx-mx)*.05;my+=(ty-my)*.05;
+var hx=w*.76,hy=h*.5,ex=mob?w+8:w-h*.34*.29-14,ey=h*.52,px=hx+(ex-hx)*e,py=hy+(ey-hy)*e;
+var hs=h*(mob?.55:.78);
+helix.position.set((px-w/2)*wpp,-(py-h/2)*wpp,0);helix.scale.setScalar(hs*wpp/H);helix.rotation.x=BX+my*.15;helix.rotation.z=BZ+mx*.1;
+spin.rotation.y=RM?.6+s*.0016:t*.35+s*.0016;var op=clamp(1-e*1.7,0,1);
+pmt.opacity=.35;lmt.opacity=.12;
+var bt=1-pg(),ba=bt*TU*Math.PI*2;bead.position.set(Math.cos(ba)*R,(bt-.5)*H,Math.sin(ba)*R);bead.visible=e>.35;
+var dk=th.dataset.theme==="dark",gf=dk?1:1-.8*e;glows.forEach(function(g){g[0].opacity=g[1]*gf});bm.color.setHex(dk||e<.5?0xffffff:0x1e3c72);
+cam.position.x=mx*.9;cam.position.y=-my*.6;cam.lookAt(0,0,0);if(!RM)parts();rd.render(sc,cam)}
+rs();addEventListener("resize",rs);
+if(RM){parts();draw();addEventListener("scroll",draw,{passive:true})}else(function l(){draw();requestAnimationFrame(l)})();
+})();
+/* Certificate image dialog with keyboard and backdrop dismissal. */
+var lb=$("#lb"),li=$("#lbi"),lm=$("#lbm"),last;
+$$(".cert-btn").forEach(function(b){b.onclick=function(){last=b;$("#lbt").textContent=b.dataset.t;lm.style.display="none";li.style.display="block";li.src=b.dataset.s;lb.classList.add("on");document.body.style.overflow="hidden"}});
+li.onerror=function(){li.style.display="none";lm.style.display="block"};
+function cl(){lb.classList.remove("on");document.body.style.overflow="";last&&last.focus()}
+$("#lbc").onclick=cl;lb.onclick=function(e){if(e.target===lb)cl()};addEventListener("keydown",function(e){if(e.key==="Escape")cl()});
 
-function openLightbox(title, srcVar) {
-  const src = window[srcVar];
-  if (!src) {
-    console.error("Image not found for:", srcVar);
-    alert("Sorry, certificate image could not be loaded.\nCheck if the file exists: " + srcVar);
-    return;
-  }
-  document.getElementById("lb-title").textContent = title;
-  document.getElementById("lb-img").src = src;
-  document.getElementById("lightbox").classList.add("active");
-  document.body.style.overflow = "hidden";
+/* ===== BioScope Lab: client-side GeneScope, ProteinScope, and AlignScope tools ===== */
+var CT="FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG",IX={T:0,C:1,A:2,G:3},CP={A:"T",T:"A",G:"C",C:"G"};
+var KD={A:1.8,R:-4.5,N:-3.5,D:-3.5,C:2.5,Q:-3.5,E:-3.5,G:-.4,H:-3.2,I:4.5,L:3.8,K:-3.9,M:1.9,F:2.8,P:-1.6,S:-.8,T:-.7,W:-.9,Y:-1.3,V:4.2};
+var MS={A:71.0788,R:156.1875,N:114.1038,D:115.0886,C:103.1388,E:129.1155,Q:128.1307,G:57.0519,H:137.1411,I:113.1594,L:113.1594,K:128.1741,M:131.1926,F:147.1766,P:97.1167,S:87.0782,T:101.1051,W:186.2132,Y:163.176,V:99.1326};
+var RE={EcoRI:"GAATTC",BamHI:"GGATCC",HindIII:"AAGCTT",NotI:"GCGGCCGC",XhoI:"CTCGAG",NcoI:"CCATGG",SalI:"GTCGAC",PstI:"CTGCAG",KpnI:"GGTACC",XbaI:"TCTAGA"};
+var EX={G:"ATGAAAGCTATTGTTCTGGGTCGTCACGAAGGTTTCCTGGCTGCTGTTCGTGGTAAAGGTGAACTGCTGGAAACCGGTCGTTCTCTGCAGGGTGAATAA",P:"MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR",A:"ATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTC|ATGGATTTATCTGCGCTTCGCATTGAAGAAGTACAAAGTATC"};
+// Format numeric output consistently across the analysis tools.
+var f1=function(n,d){return(+n).toFixed(d===undefined?2:d)};
+
+// Return the reverse complement of a DNA sequence.
+function rc(s){
+	return s.split("").reverse().map(function(c){return CP[c]||"N"}).join("");
 }
 
-function closeLightboxBtn() {
-  document.getElementById("lightbox").classList.remove("active");
-  document.body.style.overflow = "";
+// Translate DNA from a reading frame; optionally stop at the first stop codon.
+function tr(s,f,stop){
+	var o="";
+	for(var i=f;i+2<s.length;i+=3){
+		var a=CT[IX[s[i]]*16+IX[s[i+1]]*4+IX[s[i+2]]];
+		if(a==="*"&&stop)break;
+		o+=a;
+	}
+	return o;
 }
-
-function closeLightbox(event) {
-  if (event.target === document.getElementById("lightbox") || 
-      event.target.classList.contains("lightbox-close")) {
-    closeLightboxBtn();
-  }
+function K(l,v){return'<div class="k"><small>'+l+"</small><b>"+v+"</b></div>"}
+function KP(a){return'<div class="kp">'+a.map(function(x){return K(x[0],x[1])}).join("")+"</div>"}
+function PRE(t){return"<pre>"+t+"</pre>"}
+function BARS(o,tot){return Object.keys(o).map(function(k){var p=tot?o[k]/tot*100:0;return'<div class="bar"><span>'+k+'</span><i><s style="width:'+p+'%"></s></i><span>'+f1(p,1)+"%</span></div>"}).join("")}
+function PLOT(v,zero){var mn=Math.min.apply(0,v.concat(zero?[0]:[])),mx=Math.max.apply(0,v.concat(zero?[0]:[])),sx=300/Math.max(v.length-1,1),y=function(a){return 140-(a-mn)/((mx-mn)||1)*130},z=zero?'<line x1="0" x2="300" y1="'+y(0)+'" y2="'+y(0)+'" stroke="#667eea" stroke-dasharray="4 4"/>':"";
+return'<svg class="plot" viewBox="0 0 300 150" preserveAspectRatio="none">'+z+'<polyline fill="none" style="stroke:var(--accent2)" stroke-width="2" points="'+v.map(function(a,i){return(i*sx).toFixed(1)+","+y(a).toFixed(1)}).join(" ")+'"/></svg>'}
+function charge(s,ph){var c=0,q=function(pk,sg){return sg/(1+Math.pow(10,sg>0?ph-pk:pk-ph))};c+=q(8.6,1)+q(3.6,-1);var pk={K:[10.8,1],R:[12.5,1],H:[6.5,1],D:[3.9,-1],E:[4.1,-1],C:[8.5,-1],Y:[10.1,-1]};for(var i=0;i<s.length;i++){var p=pk[s[i]];if(p)c+=q(p[0],p[1])}return c}
+function pI(s){var lo=0,hi=14;for(var i=0;i<40;i++){var m=(lo+hi)/2;charge(s,m)>0?lo=m:hi=m}return(lo+hi)/2}
+function mw(s){var m=18.015;for(var i=0;i<s.length;i++)m+=MS[s[i]]||0;return m}
+// Count the occurrences of each symbol in a sequence.
+function cnt(s){
+	var o={};
+	for(var i=0;i<s.length;i++)o[s[i]]=(o[s[i]]||0)+1;
+	return o;
 }
-
-document.addEventListener("keydown", function(e) {
-  if (e.key === "Escape") closeLightboxBtn();
-});
+function orfs(s){var r=[],st={TAA:1,TAG:1,TGA:1};[["+",s],["−",rc(s)]].forEach(function(p){for(var f=0;f<3;f++){for(var i=f;i<p[1].length-2;i+=3){if(p[1].substr(i,3)==="ATG"){for(var j=i+3;j<p[1].length-2;j+=3)if(st[p[1].substr(j,3)]){r.push([p[0],f+1,i+1,j+3,p[1].slice(i,j+3)]);i=j;break}}}}});return r.sort(function(a,b){return b[4].length-a[4].length})}
+function nw(a,b){a=a.slice(0,200);b=b.slice(0,200);var n=a.length,m=b.length,M=[],i,j;for(i=0;i<=n;i++){M[i]=[i*-2];}for(j=1;j<=m;j++)M[0][j]=j*-2;
+for(i=1;i<=n;i++)for(j=1;j<=m;j++)M[i][j]=Math.max(M[i-1][j-1]+(a[i-1]===b[j-1]?2:-1),M[i-1][j]-2,M[i][j-1]-2);
+var x="",y="",mk="";i=n;j=m;while(i>0||j>0){if(i>0&&j>0&&M[i][j]===M[i-1][j-1]+(a[i-1]===b[j-1]?2:-1)){x=a[--i]+x;y=b[--j]+y;mk=(x[0]===y[0]?"|":".")+mk}else if(i>0&&M[i][j]===M[i-1][j]-2){x=a[--i]+x;y="-"+y;mk=" "+mk}else{x="-"+x;y=b[--j]+y;mk=" "+mk}}
+return{score:M[n][m],x:x,y:y,mk:mk}}
+// Each entry connects a tool label with the function that produces its output.
+var TL={G:{"GC Content":function(s){var g=cnt(s),gc=((g.G||0)+(g.C||0))/s.length*100;return KP([["Length",s.length+" bp"],["GC %",f1(gc)+"%"],["AT %",f1(100-gc)+"%"]])+BARS({A:g.A||0,T:g.T||0,G:g.G||0,C:g.C||0},s.length)},
+"Rev. Complement":function(s){return PRE("Original (5'→3'):\n"+s+"\n\nRC (5'→3'):\n"+rc(s))},
+"Central Dogma":function(s){return PRE("DNA (5'→3'):\n"+s+"\n\nmRNA (5'→3'):\n"+s.replace(/T/g,"U")+"\n\nProtein (N→C):\n"+tr(s,0,1))},
+"ORF Finder":function(s){var o=orfs(s);return"<p>Total ORFs: <b>"+o.length+"</b></p>"+o.slice(0,5).map(function(x,i){return PRE("ORF "+(i+1)+" | Strand "+x[0]+" Frame "+x[1]+" Pos "+x[2]+"-"+x[3]+" ("+x[4].length+" bp)\n"+x[4])}).join("")},
+"Restriction Sites":function(s){var o="";for(var n in RE){var p=[],i=-1;while((i=s.indexOf(RE[n],i+1))>-1)p.push(i+1);if(p.length)o+=n+" ("+RE[n]+") — "+p.length+" cut(s) at "+p.join(", ")+"\n"}return PRE(o||"None of the common restriction sites found.")},
+"Melting Temp":function(s){s=s.slice(0,500);var g=cnt(s),n=s.length,gc=((g.G||0)+(g.C||0))/n;return n<=13?KP([["Wallace Tm",2*((g.A||0)+(g.T||0))+4*((g.G||0)+(g.C||0))+" °C"]]):KP([["Tm @ 50mM Na⁺",f1(81.5+16.6*Math.log10(.05)+41*gc-675/n,1)+" °C"],["Tm @ 200mM Na⁺",f1(81.5+16.6*Math.log10(.2)+41*gc-675/n,1)+" °C"]])},
+"Codon Usage":function(s){var t={},T=0;for(var i=0;i+2<s.length;i+=3){var c=s.substr(i,3);t[c]=(t[c]||0)+1;T++}return PRE(Object.keys(t).sort(function(a,b){return t[b]-t[a]}).slice(0,16).map(function(c){return c+"  "+CT[IX[c[0]]*16+IX[c[1]]*4+IX[c[2]]]+"  "+t[c]+"  ("+f1(t[c]/T*1e3,0)+" per 1000)"}).join("\n"))}},
+P:{"AA Composition":function(s){var c=cnt(s);return BARS(c,s.length)},
+"Molecular Weight":function(s){var m=mw(s);return KP([["MW (Da)",f1(m)],["MW (kDa)",f1(m/1e3,3)]])},
+"Isoelectric Point":function(s){var p=pI(s);return KP([["pI",f1(p)]])+"<p>"+(p>7?"Basic":"Acidic")+" protein</p>"},
+"GRAVY Score":function(s){var g=0;for(var i=0;i<s.length;i++)g+=KD[s[i]];g/=s.length;return KP([["GRAVY",f1(g,4)]])+"<p>"+(g>0?"Hydrophobic":"Hydrophilic")+"</p>"},
+"Aromaticity":function(s){var c=cnt(s);return KP([["Aromaticity",f1(((c.F||0)+(c.W||0)+(c.Y||0))/s.length,4)]])+'<p class="hint">Relative frequency of Phe, Trp, Tyr</p>'},
+"Hydrophobicity Plot":function(s){var v=[],w=9;if(s.length<w)return"<p>Sequence too short for window size 9.</p>";for(var i=0;i+w<=s.length;i++){var a=0;for(var k=i;k<i+w;k++)a+=KD[s[k]];v.push(a/w)}return PLOT(v,1)+'<p class="hint">Kyte-Doolittle, window 9 — above the dashed line is hydrophobic</p>'},
+"Charge vs pH":function(s){var v=[];for(var p=1;p<=13.5;p+=.5)v.push(charge(s,p));return PLOT(v,1)+'<p class="hint">Net charge from pH 1 to 13.5 · pI = '+f1(pI(s))+"</p>"},
+"Full Analysis":function(s){var c=cnt(s),g=0;for(var i=0;i<s.length;i++)g+=KD[s[i]];return KP([["Length",s.length+" aa"],["MW (Da)",f1(mw(s))],["pI",f1(pI(s))],["GRAVY",f1(g/s.length,4)],["Aromaticity",f1(((c.F||0)+(c.W||0)+(c.Y||0))/s.length,4)]])}},
+A:{"Pairwise Align":function(a,b){var r=nw(a,b),id=0,L=r.mk.length;for(var i=0;i<L;i++)if(r.mk[i]==="|")id++;return KP([["Score",r.score],["Identity",f1(id/L*100,1)+"%"],["Length",L]])+PRE(r.x+"\n"+r.mk+"\n"+r.y)}}};
+var tab="G",tool="GC Content",s1=$("#s1"),s2=$("#s2");
+var HT={G:"DNA, plain or FASTA",P:"Protein sequence, plain or FASTA",A:"Sequence 1 above, sequence 2 below"};
+// Remove FASTA headers and whitespace, then filter to valid sequence symbols.
+function clean(v,t){
+	v=v.replace(/^>.*$/mg,"").toUpperCase().replace(/\s+/g,"");
+	return v.replace(t==="P"?/[^ACDEFGHIKLMNPQRSTVWY]/g:/[^ACGT]/g,"");
+}
+function draw(){var t=TL[tab];$("#tools").innerHTML=Object.keys(t).map(function(n){return'<button class="tb'+(n===tool?" on":"")+'">'+n+"</button>"}).join("");
+$$("#tools .tb").forEach(function(b){b.onclick=function(){tool=b.textContent;draw();run()}});
+s2.style.display=tab==="A"?"block":"none";$("#hint").textContent=HT[tab]}
+function load(){var e=EX[tab].split("|");s1.value=e[0];s2.value=e[1]||"";s1.placeholder=">MySeq\n"+(tab==="P"?"MVLSPADKTN…":"ATGCATGC…")}
+// Validate the input, run the selected analysis, and render its result.
+function run(){
+	var o=$("#out"),t=tab==="A"?"G":tab,a=clean(s1.value,t),b=clean(s2.value,"G");
+	if(!a||(tab==="A"&&!b))
+		return o.innerHTML="<p>Enter "+(tab==="A"?"two sequences":"a sequence")+" first, or load the example.</p>";
+	if(tab==="G"&&a.length<3)return o.innerHTML="<p>Sequence is too short.</p>";
+	o.style.animation="none";
+	o.offsetHeight;
+	o.style.animation="";
+	o.innerHTML=TL[tab][tool](a,b);
+}
+$$("#tabs .tab").forEach(function(b){b.onclick=function(){$$("#tabs .tab").forEach(function(x){x.classList.remove("on")});b.classList.add("on");tab=b.dataset.t;tool=Object.keys(TL[tab])[0];load();draw();run()}});
+$("#run").onclick=run;$("#ex").onclick=function(){load();run()};
+load();draw();run();
+})();
 </script>
-
 </body>
 </html>
